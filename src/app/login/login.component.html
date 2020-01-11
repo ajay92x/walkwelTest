@@ -1,0 +1,25 @@
+<div class="container">
+  <div>
+    <h1>Login</h1>
+    <hr><br>
+    <form (ngSubmit)="onSubmitLoginForm(loginForm)" #loginForm="ngForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input autocomplete="off" [(ngModel)]="user.email" name="email" type="email" required class="form-control"
+          placeholder="Enter your email" #email="ngModel"
+          pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,})$">
+        <p class="alert alert-danger" *ngIf="email.errors?.required && email.touched">
+          Email is required
+        </p>
+        <p class="alert alert-danger" *ngIf="email.errors?.pattern && email.touched">
+          Please enter valid email address.
+        </p>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Submit</button>
+    </form>
+    <p>
+      <span>Don't have an account? </span>
+      <a [routerLink]="['/signup']">Signup!</a>
+    </p>
+  </div>
+</div>
